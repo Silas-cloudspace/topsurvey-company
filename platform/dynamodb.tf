@@ -35,8 +35,6 @@ resource "aws_dynamodb_table" "survey_responses" {
     name               = "survey_id-index"
     hash_key           = "survey_id"
     projection_type    = "ALL"
-    write_capacity     = 0 
-    read_capacity      = 0  
   }
 
   tags = {
