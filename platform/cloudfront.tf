@@ -25,7 +25,7 @@ resource "aws_cloudfront_distribution" "frontend" {
   default_root_object = "index.html"
   http_version        = "http2"
   is_ipv6_enabled     = true
-  price_class         = "PriceClass_100"
+  price_class         = "PriceClass_All"
 
   origin {
     domain_name = aws_s3_bucket.frontend.bucket_regional_domain_name
