@@ -85,7 +85,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_policy_attachment" {
 resource "aws_iam_policy" "github_actions_s3_policy" {
   name        = "GitHubActionsS3Policy"
   description = "Policy to allow GitHub Actions to deploy frontend to S3"
-  
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
