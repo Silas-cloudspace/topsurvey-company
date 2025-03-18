@@ -80,33 +80,3 @@ resource "aws_iam_role_policy_attachment" "ecs_task_policy_attachment" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = aws_iam_policy.ecs_task_policy.arn
 }
-
-# IAM Policy for GitHub Actions to Deploy Frontend to S3
-resource "aws_iam_policy" "github_actions_s3_policy" {
-  name        = "GitHubActionsS3Policy"
-  description = "Policy to allow GitHub Actions to deploy frontend to S3"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect   = "Allow"
-        Action   = [
-          "s3:ListBucket",
-          "s3:PutObject",
-          "s3:DeleteObject"
-        ]
-        Resource = [
-          "arn:aws:s3:::${aws_s3_bucket.frontend.id}",
-          "arn:aws:s3:::${aws_s3_bucket.frontend.id}/*"
-        ]
-      }
-    ]
-  })
-}
-
-# Attach the S3 Policy to the IAM User (GitHub Actions Service Account)
-resource "aws_iam_user_policy_attachment" "github_actions_s3_attachment" {
-  user       = var.aws_user_name
-  policy_arn = aws_iam_policy.github_actions_s3_policy.arn
-}
