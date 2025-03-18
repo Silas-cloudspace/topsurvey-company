@@ -2,6 +2,7 @@ resource "aws_cloudfront_origin_access_identity" "frontend" {
   comment = "Origin Access Identity for ${aws_s3_bucket.frontend.bucket}"
 }
 
+# Policy to allow CloudFront OAI access
 resource "aws_s3_bucket_policy" "frontend" {
   bucket = aws_s3_bucket.frontend.id
   policy = jsonencode({
