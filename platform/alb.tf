@@ -1,5 +1,4 @@
 # create application load balancer
-# terraform aws create application load balancer
 resource "aws_lb" "application_load_balancer" {
   name                       = "${var.project_name}-${var.environment}-alb"
   internal                   = false
@@ -14,7 +13,6 @@ resource "aws_lb" "application_load_balancer" {
 }
 
 # create a listener on port 80 with redirect action
-# terraform aws create listener
 resource "aws_lb_listener" "alb_http_listener" {
   load_balancer_arn = aws_lb.application_load_balancer.arn
   port              = 80
@@ -34,7 +32,6 @@ resource "aws_lb_listener" "alb_http_listener" {
 }
 
 # create a listener on port 443 with forward action
-# terraform aws create listener
 resource "aws_lb_listener" "alb_https_listener" {
   load_balancer_arn = aws_lb.application_load_balancer.arn
   port              = 443

@@ -118,7 +118,7 @@ resource "aws_appautoscaling_policy" "ecs_scale_out" {
   }
 }
 
-# Scale In Policy (Decrease Tasks) - Change to Memory Utilization
+# Scale In Policy (Decrease Tasks)
 resource "aws_appautoscaling_policy" "ecs_scale_in" {
   name               = "${var.project_name}-${var.environment}-scale-in"
   service_namespace  = "ecs"
